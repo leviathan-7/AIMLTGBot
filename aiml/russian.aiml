@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ACQUAINTANCE -->
+
+<aiml>
+  <category>
+    <pattern>_ меня зовут *</pattern>
+    <template>
+        <srai>меня зовут <star/></srai>
+    </template>
+  </category>
+  
+  <category>
+    <pattern>меня зовут *</pattern>
+    <template>
+      <random>
+        <li>Здравствуйте, Господин <set name="user-name"><star /></set>!
+        </li>
+        <li>Добро пожаловать, Господин <set name="user-name"><star /></set>!
+        </li>
+      </random>
+    </template>
+  </category>
+
+  <category>
+    <pattern>кто ты</pattern>
+    <template>
+        Я Бот для определения смайликов, Господин <get name="user-name" />
+    </template>
+  </category>
+  
+  <category>
+    <pattern>РАССКАЖИ О СЕБЕ</pattern>
+    <template>
+      <srai>кто ты</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>Что ты умеешь</pattern>
+    <template>
+      <srai>кто ты</srai>
+    </template>
+  </category>
+    
+  <category>
+    <pattern>*</pattern>
+    <template>Я такое не знаю, <get name="user-name"/></template>
+  </category>
+
+  <category>
+    <pattern>Какие есть образы</pattern>
+    <template>
+      Господин <get name="user-name"/>, возможные образы:
+      <li>улыбка;
+      </li>
+      <li>любовь;
+      </li>
+      <li>нейтральный;
+      </li>
+      <li>сонный;
+      </li>
+      <li>злой;
+      </li>
+    </template>
+  </category>
+
+  <category>
+    <pattern>образы</pattern>
+    <template>
+      <srai>Какие есть образы</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>Образы</pattern>
+    <template>
+      <srai>Какие есть образы</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>Расскажи об образе улыбка</pattern>
+    <template>
+        Господин <get name="user-name"/>, <set name="smile">улыбка</set> -- самый хороший и простой смайлик.
+    </template>
+  </category>
+
+  <category>
+    <pattern>Что такое образ улыбка</pattern>
+    <template>
+      <srai>Расскажи об образе улыбка</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>Расскажи об образе любовь</pattern>
+    <template>
+      Господин <get name="user-name"/>, <set name="smile">любовь</set> -- самый сопливый и сердечный смайлик.
+    </template>
+  </category>
+
+  <category>
+    <pattern>Что такое образ любовь</pattern>
+    <template>
+      <srai>Расскажи об образе любовь</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>Расскажи об образе нейтральный</pattern>
+    <template>
+      Господин <get name="user-name"/>, <set name="smile">нейтральный</set> -- самый обыденный в нашей жизни образ...
+    </template>
+  </category>
+
+  <category>
+    <pattern>Что такое образ нейтральный</pattern>
+    <template>
+      <srai>Расскажи об образе нейтральный</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>Расскажи об образе сонный</pattern>
+    <template>
+      Господин <get name="user-name"/>, <set name="smile">сонный</set> -- Я не буду рассказывать! Я сплю!!!!!.
+    </template>
+  </category>
+
+  <category>
+    <pattern>Что такое образ сонный</pattern>
+    <template>
+      <srai>Расскажи об образе сонный</srai>
+    </template>
+  </category>
+
+  <category>
+    <pattern>Расскажи об образе злой</pattern>
+    <template>
+      Господин <get name="user-name"/>, <set name="smile">злой</set> -- Я не злой, лицо такое...
+    </template>
+  </category>
+
+  <category>
+    <pattern>Что такое образ злой</pattern>
+    <template>
+      <srai>Расскажи об образе злой</srai>
+    </template>
+  </category>
+  
+  <category>
+    <pattern>О чем мы разговариваем</pattern>
+    <template>
+      Господин <get name="user-name"/>, мы говорим об образе <get name="smile"/>!
+    </template>
+  </category>
+
+  <category>
+    <pattern>Что еще ты знаешь</pattern>
+    <template>
+      <condition name = "smile" value = "улыбка">
+        Улыбка - это выразительные движения мышц лица!!
+      </condition>
+      <condition name = "smile" value = "любовь">
+        Вообще, любовь это не смайлик, а чувства внутри.
+      </condition>
+      <condition name = "smile" value = "нейтральный">
+        Ну...
+      </condition>
+      <condition name = "smile" value = "сонный">
+        Да дай мне поспать, Господин!!!!!
+      </condition>
+      <condition name = "smile" value = "злой">
+        Злость - это наихудшее из всех возможных состояний.
+      </condition>
+    </template>
+  </category>
+
+  <category>
+    <pattern>Что еще</pattern>
+    <template>
+      <srai>Что еще ты знаешь</srai>
+    </template>
+  </category>
+  
+</aiml>
