@@ -8,11 +8,15 @@ using Telegram.Bot.Exceptions;
 using Telegram.Bot.Extensions.Polling;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
+using System.Drawing;
 
 namespace AIMLTGBot
 {
     public class TelegramService : IDisposable
     {
+        //класс, для выдачи результата работы сети
+        private ResultFromNeyronNetwork ResultFromNeyronNetwork = new ResultFromNeyronNetwork();
+
         private readonly TelegramBotClient client;
         private readonly AIMLService aiml;
         // CancellationToken - инструмент для отмены задач, запущенных в отдельном потоке
@@ -50,23 +54,18 @@ namespace AIMLTGBot
                     cancellationToken: cancellationToken);
                 return;
             }
-            // Загрузка изображений пригодится для соединения с нейросетью
+            // Загрузка изображений в нейросеть и получение результата
             if (message.Type == MessageType.Photo)
             {
                 var photoId = message.Photo.Last().FileId;
                 Telegram.Bot.Types.File fl = await client.GetFileAsync(photoId, cancellationToken: cancellationToken);
                 var imageStream = new MemoryStream();
                 await client.DownloadFileAsync(fl.FilePath, imageStream, cancellationToken: cancellationToken);
-                // Если бы мы хотели получить битмап, то могли бы использовать new Bitmap(Image.FromStream(imageStream))
-                // Но вместо этого пошлём картинку назад
-                // Стрим помнит последнее место записи, мы же хотим теперь прочитать с самого начала
-                imageStream.Seek(0, 0);
-                await client.SendPhotoAsync(
-                    message.Chat.Id,
-                    imageStream,
-                    "Пока что я не знаю, что делать с картинками, так что держи обратно",
-                    cancellationToken: cancellationToken
-                );
+
+                Bitmap IMG = new Bitmap(Image.FromStream(imageStream));
+                String str = ResultFromNeyronNetwork.Result(IMG);
+
+                await client.SendTextMessageAsync(message.Chat.Id, aiml.Talk(chatId, username, "расскажи об образе " + str), cancellationToken: cancellationToken);
                 return;
             }
             // Можно обрабатывать разные виды сообщений, просто для примера пробросим реакцию на них в AIML
