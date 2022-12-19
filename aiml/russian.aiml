@@ -39,7 +39,7 @@
   <category>
     <pattern>Что ты умеешь</pattern>
     <template>
-      <srai>кто ты</srai>
+      <srai>Я умею распознавать смайлики на фотографиях</srai>
     </template>
   </category>
     
