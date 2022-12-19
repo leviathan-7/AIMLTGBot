@@ -25,7 +25,7 @@
   <category>
     <pattern>кто ты</pattern>
     <template>
-        Я Бот для определения смайликов, Господин <get name="user-name" />
+        Я Бот для распознавания смайликов, Господин <get name="user-name" />
     </template>
   </category>
   
