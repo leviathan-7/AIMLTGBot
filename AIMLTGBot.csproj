@@ -85,9 +85,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AIMLService.cs" />
+    <Compile Include="ArrFromBitmap.cs" />
+    <Compile Include="Layer.cs" />
+    <Compile Include="Matrix.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResultFromNeyronNetwork.cs" />
+    <Compile Include="StudentNetwork.cs" />
     <Compile Include="TelegramService.cs" />
   </ItemGroup>
   <ItemGroup>

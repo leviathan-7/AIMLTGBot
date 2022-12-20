@@ -15,7 +15,7 @@ namespace AIMLTGBot
     public class TelegramService : IDisposable
     {
         //класс, для выдачи результата работы сети
-        private ResultFromNeyronNetwork ResultFromNeyronNetwork = new ResultFromNeyronNetwork();
+        private ResultFromNeyronNetwork ResultFromNeyronNetwork = null;
 
         private readonly TelegramBotClient client;
         private readonly AIMLService aiml;
@@ -23,8 +23,10 @@ namespace AIMLTGBot
         private readonly CancellationTokenSource cts = new CancellationTokenSource();
         public string Username { get; }
 
-        public TelegramService(string token, AIMLService aimlService)
+        public TelegramService(string token, AIMLService aimlService, StudentNetwork Network)
         {
+            ResultFromNeyronNetwork = new ResultFromNeyronNetwork(Network);
+
             aiml = aimlService;
             client = new TelegramBotClient(token);
             client.StartReceiving(HandleUpdateMessageAsync, HandleErrorAsync, new ReceiverOptions
