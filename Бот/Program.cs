@@ -6,7 +6,7 @@ namespace AIMLTGBot
     {
         static void Main(string[] args)
         {
-            StudentNetwork Network = StudentNetwork.ReadFromFile("НАЗВАНИЕ ФАЙЛА");
+            StudentNetwork Network = new StudentNetwork(@"c:\NeyronNetwork.txt");
             var token = System.IO.File.ReadAllText("TGToken.txt");
             using (var tg = new TelegramService(token, new AIMLService(),Network))
             {
