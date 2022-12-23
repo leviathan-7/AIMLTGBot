@@ -52,15 +52,20 @@
     <pattern>Какие есть образы</pattern>
     <template>
       Господин <get name="user-name"/>, возможные образы:
-      <li>улыбка;
+      <li>
+        улыбка;
       </li>
-      <li>любовь;
+      <li>
+        грусть;
       </li>
-      <li>нейтральный;
+      <li>
+        нейтральный;
       </li>
-      <li>сонный;
+      <li>
+        удивление;
       </li>
-      <li>злой;
+      <li>
+        злой;
       </li>
     </template>
   </category>
@@ -94,16 +99,16 @@
   </category>
 
   <category>
-    <pattern>Расскажи об образе любовь</pattern>
+    <pattern>Расскажи об образе грусть</pattern>
     <template>
-      Господин <get name="user-name"/>, <set name="smile">любовь</set> -- самый сопливый и сердечный смайлик.
+      Господин <get name="user-name"/>, <set name="smile">грусть</set> -- самый расстроенный смайлик.
     </template>
   </category>
 
   <category>
-    <pattern>Что такое образ любовь</pattern>
+    <pattern>Что такое образ грусть</pattern>
     <template>
-      <srai>Расскажи об образе любовь</srai>
+      <srai>Расскажи об образе грусть</srai>
     </template>
   </category>
 
@@ -122,16 +127,16 @@
   </category>
 
   <category>
-    <pattern>Расскажи об образе сонный</pattern>
+    <pattern>Расскажи об образе удивление</pattern>
     <template>
-      Господин <get name="user-name"/>, <set name="smile">сонный</set> -- Я не буду рассказывать! Я сплю!!!!!.
+      Господин <get name="user-name"/>, <set name="smile">удивление</set> -- ничего себе!
     </template>
   </category>
 
   <category>
-    <pattern>Что такое образ сонный</pattern>
+    <pattern>Что такое образ удивление</pattern>
     <template>
-      <srai>Расскажи об образе сонный</srai>
+      <srai>Расскажи об образе удивление</srai>
     </template>
   </category>
 
@@ -162,14 +167,14 @@
       <condition name = "smile" value = "улыбка">
         Улыбка - это выразительные движения мышц лица!!
       </condition>
-      <condition name = "smile" value = "любовь">
-        Вообще, любовь это не смайлик, а чувства внутри.
+      <condition name = "smile" value = "грусть">
+        Грустить нужно как можно меньше. А лучше вообще не грустить!
       </condition>
       <condition name = "smile" value = "нейтральный">
         Ну...
       </condition>
-      <condition name = "smile" value = "сонный">
-        Да дай мне поспать, Господин!!!!!
+      <condition name = "smile" value = "удивление">
+        Удивительно, что спрашиваете меня об этом.
       </condition>
       <condition name = "smile" value = "злой">
         Злость - это наихудшее из всех возможных состояний.
