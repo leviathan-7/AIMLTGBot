@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.IO;
+
 namespace AIMLTGBot
 {
     public class StudentNetwork
@@ -20,10 +22,19 @@ namespace AIMLTGBot
             }
             N = Layers.Count;
         }
-        public static StudentNetwork ReadFromFile(string path)
+        public StudentNetwork(string path)
         {
-            //TODO: прочесть готовую сеть из файла
-            return null;
+            List<Layer> NewLayers = new List<Layer> { };
+            string[] readText = File.ReadAllLines(path);
+            int N = int.Parse(readText[0]);
+            int j = 1;
+            for (int i = 0; i < N; i++)
+            {
+                Layer L = new Layer(readText, ref j);
+                NewLayers.Add(L);
+            }
+            Layers = NewLayers;
+            N = Layers.Count;
         }
         public double[] Compute(double[] input)
         {

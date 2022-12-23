@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
-namespace AIMLTGBot
+namespace NeuralNetwork1
 {
     class Matrix
     {
@@ -149,5 +150,36 @@ namespace AIMLTGBot
             return M;
         }
 
+        public List<string> ToFile()
+        {
+            List<string> Arr = new List<string> { };
+
+            for (int j = 0; j < y; j++)
+            {
+                String str = "";
+                for (int i = 0; i < x; i++)
+                    str += arr[i, j] + " ";
+                Arr.Add(str);
+            }
+
+            return Arr;
+        }
+
+        public Matrix(string[] readText, int start,int x, int y)
+        {
+            this.x = y;
+            this.y = x;
+            this.arr = new double[y, x];
+
+            for (int i = start; i < start + x; i++)
+            {
+                string str = readText[i];
+                string[] Arr = str.Split(' ');
+                for (int j = 0; j < y; j++)
+                {
+                    this.arr[j,i-start] = double.Parse(Arr[j]);
+                }
+            }
+        }
     }
 }
