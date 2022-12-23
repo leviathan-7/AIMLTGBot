@@ -11,6 +11,7 @@ namespace AIMLTGBot
         private int x;
         private int y;
         private double[,] arr;
+
         public double X()
         {
             return x;
@@ -19,12 +20,14 @@ namespace AIMLTGBot
         {
             return y;
         }
+
         public Matrix(int x, int y, double[,] arr)
         {
             this.x = x;
             this.y = y;
             this.arr = arr;
         }
+
         public Matrix(int x, int y)
         {
             this.x = x;

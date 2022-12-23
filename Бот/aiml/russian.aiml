@@ -6,17 +6,25 @@
   <category>
     <pattern>_ меня зовут *</pattern>
     <template>
-        <srai>меня зовут <star/></srai>
+      <srai>
+        меня зовут <star/>
+      </srai>
     </template>
   </category>
-  
+
   <category>
     <pattern>меня зовут *</pattern>
     <template>
       <random>
-        <li>Здравствуйте, Господин <set name="user-name"><star /></set>!
+        <li>
+          Здравствуйте, Господин <set name="user-name">
+            <star />
+          </set>!
         </li>
-        <li>Добро пожаловать, Господин <set name="user-name"><star /></set>!
+        <li>
+          Добро пожаловать, Господин <set name="user-name">
+            <star />
+          </set>!
         </li>
       </random>
     </template>
@@ -25,10 +33,10 @@
   <category>
     <pattern>кто ты</pattern>
     <template>
-        Я Бот для распознавания смайликов, Господин <get name="user-name" />
+      Я Бот для распознавания смайликов, Господин <get name="user-name" />
     </template>
   </category>
-  
+
   <category>
     <pattern>РАССКАЖИ О СЕБЕ</pattern>
     <template>
@@ -42,25 +50,32 @@
       <srai>кто ты</srai>
     </template>
   </category>
-    
+
   <category>
     <pattern>*</pattern>
-    <template>Я такое не знаю, <get name="user-name"/></template>
+    <template>
+      Я такое не знаю, <get name="user-name"/>
+    </template>
   </category>
 
   <category>
     <pattern>Какие есть образы</pattern>
     <template>
       Господин <get name="user-name"/>, возможные образы:
-      <li>улыбка;
+      <li>
+        улыбка;
       </li>
-      <li>любовь;
+      <li>
+        грусть;
       </li>
-      <li>нейтральный;
+      <li>
+        нейтральный;
       </li>
-      <li>сонный;
+      <li>
+        удивление;
       </li>
-      <li>злой;
+      <li>
+        злой;
       </li>
     </template>
   </category>
@@ -82,7 +97,7 @@
   <category>
     <pattern>Расскажи об образе улыбка</pattern>
     <template>
-        Господин <get name="user-name"/>, <set name="smile">улыбка</set> -- самый хороший и простой смайлик.
+      Господин <get name="user-name"/>, <set name="smile">улыбка</set> -- самый хороший и простой смайлик.
     </template>
   </category>
 
@@ -94,16 +109,16 @@
   </category>
 
   <category>
-    <pattern>Расскажи об образе любовь</pattern>
+    <pattern>Расскажи об образе грусть</pattern>
     <template>
-      Господин <get name="user-name"/>, <set name="smile">любовь</set> -- самый сопливый и сердечный смайлик.
+      Господин <get name="user-name"/>, <set name="smile">грусть</set> -- самый расстроенный смайлик.
     </template>
   </category>
 
   <category>
-    <pattern>Что такое образ любовь</pattern>
+    <pattern>Что такое образ грусть</pattern>
     <template>
-      <srai>Расскажи об образе любовь</srai>
+      <srai>Расскажи об образе грусть</srai>
     </template>
   </category>
 
@@ -122,16 +137,16 @@
   </category>
 
   <category>
-    <pattern>Расскажи об образе сонный</pattern>
+    <pattern>Расскажи об образе удивление</pattern>
     <template>
-      Господин <get name="user-name"/>, <set name="smile">сонный</set> -- Я не буду рассказывать! Я сплю!!!!!.
+      Господин <get name="user-name"/>, <set name="smile">удивление</set> -- ничего себе!
     </template>
   </category>
 
   <category>
-    <pattern>Что такое образ сонный</pattern>
+    <pattern>Что такое образ удивление</pattern>
     <template>
-      <srai>Расскажи об образе сонный</srai>
+      <srai>Расскажи об образе удивление</srai>
     </template>
   </category>
 
@@ -148,7 +163,7 @@
       <srai>Расскажи об образе злой</srai>
     </template>
   </category>
-  
+
   <category>
     <pattern>О чем мы разговариваем</pattern>
     <template>
@@ -162,14 +177,14 @@
       <condition name = "smile" value = "улыбка">
         Улыбка - это выразительные движения мышц лица!!
       </condition>
-      <condition name = "smile" value = "любовь">
-        Вообще, любовь это не смайлик, а чувства внутри.
+      <condition name = "smile" value = "грусть">
+        Грустить нужно как можно меньше. А лучше вообще не грустить!
       </condition>
       <condition name = "smile" value = "нейтральный">
         Ну...
       </condition>
-      <condition name = "smile" value = "сонный">
-        Да дай мне поспать, Господин!!!!!
+      <condition name = "smile" value = "удивление">
+        Удивительно, что спрашиваете меня об этом.
       </condition>
       <condition name = "smile" value = "злой">
         Злость - это наихудшее из всех возможных состояний.
@@ -183,5 +198,5 @@
       <srai>Что еще ты знаешь</srai>
     </template>
   </category>
-  
+
 </aiml>
