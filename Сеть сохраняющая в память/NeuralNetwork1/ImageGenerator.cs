@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NeuralNetwork1
+namespace NeuralNetwork1 
 {
     /// <summary>
     /// Тип фигуры

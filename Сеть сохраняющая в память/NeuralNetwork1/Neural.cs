@@ -7,7 +7,7 @@ namespace NeuralNetwork1
     /// <summary>
     /// Класс для хранения образа – входной массив сигналов на сенсорах, выходные сигналы сети, и прочее
     /// </summary>
-    public class Sample
+    public class Sample 
     {
         /// <summary>
         /// Входной вектор
