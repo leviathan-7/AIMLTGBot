@@ -7,14 +7,14 @@ using System.Drawing;
 
 namespace AIMLTGBot
 {
-    public static class BitmapEncoder
+    public static class ImageEncoder
     {
-        private const int TRESHOLD = 34;
+        private const int TRESHOLD = 10;
         private static float DifferenceLimit => TRESHOLD / 255.0f;
 
         public static double[] Flatten(Bitmap original)
         {
-            var blobs = CaptureBlobs(original);
+            var blobs = ExtractBlobs(original);
 
             var vector = Vectorize(blobs[0])
                 .Concat(Vectorize(blobs[1]))
@@ -24,7 +24,7 @@ namespace AIMLTGBot
             return vector;
         }
 
-        public static Bitmap[] CaptureBlobs(Bitmap original)
+        private static Bitmap[] ExtractBlobs(Bitmap original)
         {
             // Переводим в оттенки серого
             var grayFilter = new AForge.Imaging.Filters.Grayscale(0.2125, 0.7154, 0.0721);
@@ -50,7 +50,13 @@ namespace AIMLTGBot
 
             bc.ProcessImage(unmanaged);
 
+            // Самый первый блоб - вся картинка. Пропускаем его и берем все оставшиеся
             var rectangles = bc.GetObjectsRectangles().Skip(1).ToArray();
+            if (rectangles.Length < 3)
+            {
+                string message = "Не удалось получить требуемое количество блобов";
+                throw new EmotionRecognitionException(message);
+            }
 
             // Вытаскиваем каждый из блоб (для смайлика их всего должно быть три)
             var cropFilter = new AForge.Imaging.Filters.Crop(rectangles[0]);
@@ -63,7 +69,7 @@ namespace AIMLTGBot
             var uEye2 = cropFilter.Apply(unmanaged);
 
             // Масштабируем картинки
-            var scaleFilter = new AForge.Imaging.Filters.ResizeBilinear(90, 90);
+            var scaleFilter = new AForge.Imaging.Filters.ResizeBilinear(100, 100);
             uMouth = scaleFilter.Apply(uMouth);
             scaleFilter.NewWidth = 50;
             scaleFilter.NewHeight = 50;
