@@ -9,14 +9,15 @@ namespace NeuralNetwork1
     {
         private string path = @"c:\NeyronNetwork.txt";
         //скорость обучения
-        private double eta = 0.01;
+        private double eta = 0;
 
         // количество слоев
         private int N;
 
         private List<Layer> Layers;
-        public StudentNetwork(int[] structure)
+        public StudentNetwork(int[] structure,double speed)
         {
+            //MessageBox.Show(""+speed);
             Layers = new List<Layer> { };
             for (int i = 0; i < structure.Length - 1; i++)
             {
@@ -24,6 +25,7 @@ namespace NeuralNetwork1
                 Layers.Add(L);
             }
             N = Layers.Count;
+            eta = speed;
         }
 
         public override int Train(Sample sample, double acceptableError, bool parallel)

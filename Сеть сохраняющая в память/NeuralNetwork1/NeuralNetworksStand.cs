@@ -155,6 +155,7 @@ namespace NeuralNetwork1
 
         private void button3_Click(object sender, EventArgs e)
         {
+            Program.speed = double.Parse(textBoxSpeed.Text);
             //  Проверяем корректность задания структуры сети
             int[] structure = CurrentNetworkStructure();
             if (structure.Length < 2 || structure[0] != 400 ||

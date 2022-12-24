@@ -28,11 +28,11 @@ namespace NeuralNetwork1
 
         public List<Sample> LoadTrainSamples()
         {
-            string smilePath = @"C:\Users\Mike\Desktop\IS\AIMLTGBot\Сеть сохраняющая в память\NeuralNetwork1\эмоции\тест\улыбка";
-            string sadPath = @"C:\Users\Mike\Desktop\IS\AIMLTGBot\Сеть сохраняющая в память\NeuralNetwork1\эмоции\тест\грусть";
-            string angryPath = @"C:\Users\Mike\Desktop\IS\AIMLTGBot\Сеть сохраняющая в память\NeuralNetwork1\эмоции\тест\злой";
-            string neutralPath = @"C:\Users\Mike\Desktop\IS\AIMLTGBot\Сеть сохраняющая в память\NeuralNetwork1\эмоции\тест\нейтральный";
-            string surprisedPath = @"C:\Users\Mike\Desktop\IS\AIMLTGBot\Сеть сохраняющая в память\NeuralNetwork1\эмоции\тест\удивление";
+            string smilePath = @"C:\Users\1\Desktop\AIMLTGBot\Сеть сохраняющая в память\NeuralNetwork1\эмоции\тест\улыбка";
+            string sadPath = @"C:\Users\1\Desktop\AIMLTGBot\Сеть сохраняющая в память\NeuralNetwork1\эмоции\тест\грусть";
+            string angryPath = @"C:\Users\1\Desktop\AIMLTGBot\Сеть сохраняющая в память\NeuralNetwork1\эмоции\тест\злой";
+            string neutralPath = @"C:\Users\1\Desktop\AIMLTGBot\Сеть сохраняющая в память\NeuralNetwork1\эмоции\тест\нейтральный";
+            string surprisedPath = @"C:\Users\1\Desktop\AIMLTGBot\Сеть сохраняющая в память\NeuralNetwork1\эмоции\тест\удивление";
 
             var smiles = Directory.GetFiles(smilePath).Select(filename => new Sample(ImageEncoder.Flatten(new Bitmap(filename)), EmotionsCount, FigureType.Smile));
             var sads = Directory.GetFiles(sadPath).Select(filename => new Sample(ImageEncoder.Flatten(new Bitmap(filename)), EmotionsCount, FigureType.Sad));
@@ -50,11 +50,11 @@ namespace NeuralNetwork1
 
         public List<Sample> LoadTestSamples()
         {
-            string smilePath = @"C:\Users\Mike\Desktop\IS\AIMLTGBot\Сеть сохраняющая в память\NeuralNetwork1\эмоции\обучение\улыбка";
-            string sadPath = @"C:\Users\Mike\Desktop\IS\AIMLTGBot\Сеть сохраняющая в память\NeuralNetwork1\эмоции\обучение\грусть";
-            string angryPath = @"C:\Users\Mike\Desktop\IS\AIMLTGBot\Сеть сохраняющая в память\NeuralNetwork1\эмоции\обучение\злой";
-            string neutralPath = @"C:\Users\Mike\Desktop\IS\AIMLTGBot\Сеть сохраняющая в память\NeuralNetwork1\эмоции\обучение\нейтральный";
-            string surprisedPath = @"C:\Users\Mike\Desktop\IS\AIMLTGBot\Сеть сохраняющая в память\NeuralNetwork1\эмоции\обучение\удивление";
+            string smilePath = @"C:\Users\1\Desktop\AIMLTGBot\Сеть сохраняющая в память\NeuralNetwork1\эмоции\обучение\улыбка";
+            string sadPath = @"C:\Users\1\Desktop\AIMLTGBot\Сеть сохраняющая в память\NeuralNetwork1\эмоции\обучение\грусть";
+            string angryPath = @"C:\Users\1\Desktop\AIMLTGBot\Сеть сохраняющая в память\NeuralNetwork1\эмоции\обучение\злой";
+            string neutralPath = @"C:\Users\1\Desktop\AIMLTGBot\Сеть сохраняющая в память\NeuralNetwork1\эмоции\обучение\нейтральный";
+            string surprisedPath = @"C:\Users\1\Desktop\AIMLTGBot\Сеть сохраняющая в память\NeuralNetwork1\эмоции\обучение\удивление";
 
             var smiles = Directory.GetFiles(smilePath).Select(filename => new Sample(ImageEncoder.Flatten(new Bitmap(filename)), EmotionsCount, FigureType.Smile));
             var sads = Directory.GetFiles(sadPath).Select(filename => new Sample(ImageEncoder.Flatten(new Bitmap(filename)), EmotionsCount, FigureType.Sad));
