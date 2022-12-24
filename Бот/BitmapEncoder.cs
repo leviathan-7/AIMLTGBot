@@ -66,7 +66,7 @@ namespace AIMLTGBot
             return vector;
         }
 
-        public static Bitmap[] CaptureBlobs(Bitmap original)
+        private static Bitmap[] CaptureBlobs(Bitmap original)
         {
             // Переводим в оттенки серого
             var grayFilter = new AForge.Imaging.Filters.Grayscale(0.2125, 0.7154, 0.0721);
