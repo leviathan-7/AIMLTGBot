@@ -37,7 +37,6 @@ namespace AIMLTGBot
         }
         public double[] Compute(double[] input)
         {
-            Console.WriteLine(N);
             for (int i = 0; i < N; i++)
                 input = Layers[i].Compute(input);
             return input;
