@@ -16,7 +16,7 @@ namespace AIMLTGBot
         }
         public string Result(Bitmap img)
         {
-            double[] S = ArrFromBitmap.ToArr(img);
+            double[] S = BitmapEncoder.Flatten(img);
             double[]  res = Network.Compute(S);
             int j = 0;
             double max = 0;
