@@ -34,18 +34,33 @@ namespace NeuralNetwork1
             string neutralPath = @"C:\Users\1\Desktop\AIMLTGBot\Сеть сохраняющая в память\NeuralNetwork1\эмоции\тест\нейтральный";
             string surprisedPath = @"C:\Users\1\Desktop\AIMLTGBot\Сеть сохраняющая в память\NeuralNetwork1\эмоции\тест\удивление";
 
-            var smiles = Directory.GetFiles(smilePath).Select(filename => new Sample(ImageEncoder.Flatten(new Bitmap(filename)), EmotionsCount, FigureType.Smile));
-            var sads = Directory.GetFiles(sadPath).Select(filename => new Sample(ImageEncoder.Flatten(new Bitmap(filename)), EmotionsCount, FigureType.Sad));
-            var angries = Directory.GetFiles(angryPath).Select(filename => new Sample(ImageEncoder.Flatten(new Bitmap(filename)), EmotionsCount, FigureType.Angry));
-            var neutrals = Directory.GetFiles(neutralPath).Select(filename => new Sample(ImageEncoder.Flatten(new Bitmap(filename)), EmotionsCount, FigureType.Neutral));
-            var surpriseds = Directory.GetFiles(surprisedPath).Select(filename => new Sample(ImageEncoder.Flatten(new Bitmap(filename)), EmotionsCount, FigureType.Surprised));
+            IEnumerable<Sample> Arr = new List<Sample> { };
 
-            return smiles
-                .Concat(sads)
-                .Concat(angries)
-                .Concat(neutrals)
-                .Concat(surpriseds)
-                .ToList();
+            for (double i = -6; i < 6; i+=0.2)
+            {
+                var smiles = Directory.GetFiles(smilePath).Select(filename => new Sample(ImageEncoder.Flatten(Rotate(new Bitmap(filename), i)), EmotionsCount, FigureType.Smile));
+                var sads = Directory.GetFiles(sadPath).Select(filename => new Sample(ImageEncoder.Flatten(Rotate(new Bitmap(filename), i)), EmotionsCount, FigureType.Sad));
+                var angries = Directory.GetFiles(angryPath).Select(filename => new Sample(ImageEncoder.Flatten(Rotate(new Bitmap(filename), i)), EmotionsCount, FigureType.Angry));
+                var neutrals = Directory.GetFiles(neutralPath).Select(filename => new Sample(ImageEncoder.Flatten(Rotate(new Bitmap(filename), i)), EmotionsCount, FigureType.Neutral));
+                var surpriseds = Directory.GetFiles(surprisedPath).Select(filename => new Sample(ImageEncoder.Flatten(Rotate(new Bitmap(filename), i)), EmotionsCount, FigureType.Surprised));
+
+                var t = smiles
+                    .Concat(sads)
+                    .Concat(angries)
+                    .Concat(neutrals)
+                    .Concat(surpriseds);
+
+                Arr = Arr.Concat(t);
+            }
+
+            return Arr.ToList();
+        }
+
+        private Bitmap Rotate(Bitmap img,double i)
+        {
+            var filter = new AForge.Imaging.Filters.RotateBilinear(i, true);
+            Bitmap newImage = filter.Apply(img);
+            return newImage;
         }
 
         public List<Sample> LoadTestSamples()
