@@ -29,7 +29,7 @@ namespace AIMLTGBot
                 for (int y = 0; y < blobs[0].Height; y += 1)
                 {
                     var color = blobs[0].GetPixel(x, y);
-                    if (SatisfiesTreshold(color))
+                    if (SatisfiesRGBComponentTreshold(color))
                     {
                         vector[x] += 1.0;
                         vector[x + blobs[0].Height] += 1.0;
@@ -42,7 +42,7 @@ namespace AIMLTGBot
                 for (int y = 0; y < blobs[1].Height; y += 1)
                 {
                     var color = blobs[1].GetPixel(x, y);
-                    if (SatisfiesTreshold(color))
+                    if (SatisfiesRGBComponentTreshold(color))
                     {
                         vector[x + blobs[0].Width] += 1.0;
                         vector[x + blobs[0].Height + blobs[1].Height] += 1.0;
@@ -55,7 +55,7 @@ namespace AIMLTGBot
                 for (int y = 0; y < blobs[2].Height; y += 1)
                 {
                     var color = blobs[2].GetPixel(x, y);
-                    if (SatisfiesTreshold(color))
+                    if (SatisfiesRGBComponentTreshold(color))
                     {
                         vector[x + blobs[0].Width + blobs[1].Width] += 1.0;
                         vector[x + blobs[0].Height + blobs[1].Height + blobs[2].Height] += 1.0;
@@ -122,7 +122,7 @@ namespace AIMLTGBot
             return blobs;
         }
 
-        private static bool SatisfiesTreshold(Color color)
+        private static bool SatisfiesRGBComponentTreshold(Color color)
             => color.R <= RGB_COMPONENT_TRESHOLD && color.G <= RGB_COMPONENT_TRESHOLD && color.B <= RGB_COMPONENT_TRESHOLD;
     }
 }
