@@ -10,6 +10,7 @@ namespace AIMLTGBot
     public static class BitmapEncoder
     {
         private const float DIFFERENCE_LIM = 0.131f;
+        private const int RGB_COMPONENT_TRESHOLD = 25;
 
         public static double[] Flatten(Bitmap original)
         {
@@ -27,7 +28,8 @@ namespace AIMLTGBot
             {
                 for (int y = 0; y < blobs[0].Height; y += 1)
                 {
-                    if (blobs[0].GetPixel(x, y) == Color.Black)
+                    var color = blobs[0].GetPixel(x, y);
+                    if (SatisfiesRGBComponentTreshold(color))
                     {
                         vector[x] += 1.0;
                         vector[x + blobs[0].Height] += 1.0;
@@ -39,7 +41,8 @@ namespace AIMLTGBot
             {
                 for (int y = 0; y < blobs[1].Height; y += 1)
                 {
-                    if (blobs[1].GetPixel(x, y) == Color.Black)
+                    var color = blobs[1].GetPixel(x, y);
+                    if (SatisfiesRGBComponentTreshold(color))
                     {
                         vector[x + blobs[0].Width] += 1.0;
                         vector[x + blobs[0].Height + blobs[1].Height] += 1.0;
@@ -51,7 +54,8 @@ namespace AIMLTGBot
             {
                 for (int y = 0; y < blobs[2].Height; y += 1)
                 {
-                    if (blobs[2].GetPixel(x, y) == Color.Black)
+                    var color = blobs[2].GetPixel(x, y);
+                    if (SatisfiesRGBComponentTreshold(color))
                     {
                         vector[x + blobs[0].Width + blobs[1].Width] += 1.0;
                         vector[x + blobs[0].Height + blobs[1].Height + blobs[2].Height] += 1.0;
@@ -62,7 +66,7 @@ namespace AIMLTGBot
             return vector;
         }
 
-        public static Bitmap[] CaptureBlobs(Bitmap original)
+        private static Bitmap[] CaptureBlobs(Bitmap original)
         {
             // Переводим в оттенки серого
             var grayFilter = new AForge.Imaging.Filters.Grayscale(0.2125, 0.7154, 0.0721);
@@ -117,5 +121,8 @@ namespace AIMLTGBot
 
             return blobs;
         }
+
+        private static bool SatisfiesRGBComponentTreshold(Color color)
+            => color.R <= RGB_COMPONENT_TRESHOLD && color.G <= RGB_COMPONENT_TRESHOLD && color.B <= RGB_COMPONENT_TRESHOLD;
     }
 }
