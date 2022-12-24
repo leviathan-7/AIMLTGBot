@@ -7,66 +7,24 @@ using System.Drawing;
 
 namespace AIMLTGBot
 {
-    public static class BitmapEncoder
+    public static class ImageEncoder
     {
-        private const float DIFFERENCE_LIM = 0.131f;
-        private const int RGB_COMPONENT_TRESHOLD = 25;
+        private const int TRESHOLD = 10;
+        private static float DifferenceLimit => TRESHOLD / 255.0f;
 
         public static double[] Flatten(Bitmap original)
         {
-            var blobs = CaptureBlobs(original);
+            var blobs = ExtractBlobs(original);
 
-            int vectorSize = blobs[0].Width + blobs[0].Height
-                + blobs[1].Width + blobs[1].Height
-                + blobs[2].Width + blobs[2].Height;
-
-            var vector = Enumerable
-                .Repeat(0.0, vectorSize)
+            var vector = Vectorize(blobs[0])
+                .Concat(Vectorize(blobs[1]))
+                .Concat(Vectorize(blobs[2]))
                 .ToArray();
-
-            for (int x = 0; x < blobs[0].Width; x += 1)
-            {
-                for (int y = 0; y < blobs[0].Height; y += 1)
-                {
-                    var color = blobs[0].GetPixel(x, y);
-                    if (SatisfiesRGBComponentTreshold(color))
-                    {
-                        vector[x] += 1.0;
-                        vector[x + blobs[0].Height] += 1.0;
-                    }
-                }
-            }
-
-            for (int x = 0; x < blobs[1].Width; x += 1)
-            {
-                for (int y = 0; y < blobs[1].Height; y += 1)
-                {
-                    var color = blobs[1].GetPixel(x, y);
-                    if (SatisfiesRGBComponentTreshold(color))
-                    {
-                        vector[x + blobs[0].Width] += 1.0;
-                        vector[x + blobs[0].Height + blobs[1].Height] += 1.0;
-                    }
-                }
-            }
-
-            for (int x = 0; x < blobs[2].Width; x += 1)
-            {
-                for (int y = 0; y < blobs[2].Height; y += 1)
-                {
-                    var color = blobs[2].GetPixel(x, y);
-                    if (SatisfiesRGBComponentTreshold(color))
-                    {
-                        vector[x + blobs[0].Width + blobs[1].Width] += 1.0;
-                        vector[x + blobs[0].Height + blobs[1].Height + blobs[2].Height] += 1.0;
-                    }
-                }
-            }
 
             return vector;
         }
 
-        private static Bitmap[] CaptureBlobs(Bitmap original)
+        private static Bitmap[] ExtractBlobs(Bitmap original)
         {
             // Переводим в оттенки серого
             var grayFilter = new AForge.Imaging.Filters.Grayscale(0.2125, 0.7154, 0.0721);
@@ -78,7 +36,7 @@ namespace AIMLTGBot
 
             // Применяем пороговый фильтр
             var threshldFilter = new AForge.Imaging.Filters.BradleyLocalThresholding();
-            threshldFilter.PixelBrightnessDifferenceLimit = DIFFERENCE_LIM;
+            threshldFilter.PixelBrightnessDifferenceLimit = DifferenceLimit;
             threshldFilter.ApplyInPlace(unmanaged);
 
             // Создаём BlobCounter, вытаскиваем блобы
@@ -92,7 +50,13 @@ namespace AIMLTGBot
 
             bc.ProcessImage(unmanaged);
 
+            // Самый первый блоб - вся картинка. Пропускаем его и берем все оставшиеся
             var rectangles = bc.GetObjectsRectangles().Skip(1).ToArray();
+            if (rectangles.Length < 3)
+            {
+                string message = "Не удалось получить требуемое количество блобов";
+                throw new EmotionRecognitionException(message);
+            }
 
             // Вытаскиваем каждый из блоб (для смайлика их всего должно быть три)
             var cropFilter = new AForge.Imaging.Filters.Crop(rectangles[0]);
@@ -105,7 +69,7 @@ namespace AIMLTGBot
             var uEye2 = cropFilter.Apply(unmanaged);
 
             // Масштабируем картинки
-            var scaleFilter = new AForge.Imaging.Filters.ResizeBilinear(90, 90);
+            var scaleFilter = new AForge.Imaging.Filters.ResizeBilinear(100, 100);
             uMouth = scaleFilter.Apply(uMouth);
             scaleFilter.NewWidth = 50;
             scaleFilter.NewHeight = 50;
@@ -122,7 +86,25 @@ namespace AIMLTGBot
             return blobs;
         }
 
-        private static bool SatisfiesRGBComponentTreshold(Color color)
-            => color.R <= RGB_COMPONENT_TRESHOLD && color.G <= RGB_COMPONENT_TRESHOLD && color.B <= RGB_COMPONENT_TRESHOLD;
+        private static double[] Vectorize(Bitmap blob)
+        {
+            double[] vector = new double[blob.Width + blob.Height];
+            for (int x = 0; x < blob.Width; x += 1)
+            {
+                for (int y = 0; y < blob.Height; y += 1)
+                {
+                    var color = blob.GetPixel(x, y);
+                    if (SatisfiesTreshold(color))
+                    {
+                        vector[x] += 1.0;
+                        vector[x + blob.Height] += 1.0;
+                    }
+                }
+            }
+            return vector;
+        }
+
+        private static bool SatisfiesTreshold(Color color)
+            => color.R <= TRESHOLD && color.G <= TRESHOLD && color.B <= TRESHOLD;
     }
 }
