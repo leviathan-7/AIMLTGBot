@@ -96,7 +96,6 @@
     </Compile>
     <Compile Include="ImageGenerator.cs" />
     <Compile Include="Neural.cs" />
-    <Compile Include="Exceptions.cs" />
     <Compile Include="StudentNetwork.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

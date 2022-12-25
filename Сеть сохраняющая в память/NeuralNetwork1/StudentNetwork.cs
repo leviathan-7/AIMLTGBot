@@ -7,9 +7,9 @@ namespace NeuralNetwork1
 {
     public class StudentNetwork : BaseNetwork
     {
-        private string path = @"c:\NeyronNetwork.txt";
+        private string path = @"student-network.txt";
         //скорость обучения
-        private double eta = 0.01;
+        private double eta = 0.1;
 
         // количество слоев
         private int N;

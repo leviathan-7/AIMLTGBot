@@ -127,7 +127,7 @@
             // 
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pictureBox1.Location = new System.Drawing.Point(18, 19);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(996, 958);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -164,9 +164,9 @@
             this.groupBox1.Controls.Add(label4);
             this.groupBox1.Controls.Add(label2);
             this.groupBox1.Location = new System.Drawing.Point(1028, 77);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(6);
             this.groupBox1.Size = new System.Drawing.Size(588, 575);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
@@ -187,7 +187,7 @@
             this.netTypeBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.netTypeBox.FormattingEnabled = true;
             this.netTypeBox.Location = new System.Drawing.Point(332, 37);
-            this.netTypeBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.netTypeBox.Margin = new System.Windows.Forms.Padding(6);
             this.netTypeBox.Name = "netTypeBox";
             this.netTypeBox.Size = new System.Drawing.Size(238, 33);
             this.netTypeBox.TabIndex = 20;
@@ -198,7 +198,7 @@
             this.parallelCheckBox.Checked = true;
             this.parallelCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.parallelCheckBox.Location = new System.Drawing.Point(68, 467);
-            this.parallelCheckBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.parallelCheckBox.Margin = new System.Windows.Forms.Padding(6);
             this.parallelCheckBox.Name = "parallelCheckBox";
             this.parallelCheckBox.Size = new System.Drawing.Size(267, 29);
             this.parallelCheckBox.TabIndex = 19;
@@ -208,16 +208,16 @@
             // netStructureBox
             // 
             this.netStructureBox.Location = new System.Drawing.Point(334, 85);
-            this.netStructureBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.netStructureBox.Margin = new System.Windows.Forms.Padding(6);
             this.netStructureBox.Name = "netStructureBox";
             this.netStructureBox.Size = new System.Drawing.Size(236, 31);
             this.netStructureBox.TabIndex = 18;
-            this.netStructureBox.Text = "400;500;20;2";
+            this.netStructureBox.Text = "900;1100;100;5";
             // 
             // recreateNetButton
             // 
             this.recreateNetButton.Location = new System.Drawing.Point(154, 310);
-            this.recreateNetButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.recreateNetButton.Margin = new System.Windows.Forms.Padding(6);
             this.recreateNetButton.Name = "recreateNetButton";
             this.recreateNetButton.Size = new System.Drawing.Size(280, 58);
             this.recreateNetButton.TabIndex = 17;
@@ -229,7 +229,7 @@
             // classCounter
             // 
             this.classCounter.Location = new System.Drawing.Point(334, 240);
-            this.classCounter.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.classCounter.Margin = new System.Windows.Forms.Padding(6);
             this.classCounter.Maximum = new decimal(new int[] {
             5,
             0,
@@ -244,7 +244,7 @@
             this.classCounter.Size = new System.Drawing.Size(240, 31);
             this.classCounter.TabIndex = 16;
             this.classCounter.Value = new decimal(new int[] {
-            2,
+            5,
             0,
             0,
             0});
@@ -263,7 +263,7 @@
             // testNetButton
             // 
             this.testNetButton.Location = new System.Drawing.Point(326, 502);
-            this.testNetButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.testNetButton.Margin = new System.Windows.Forms.Padding(6);
             this.testNetButton.Name = "testNetButton";
             this.testNetButton.Size = new System.Drawing.Size(200, 58);
             this.testNetButton.TabIndex = 14;
@@ -275,7 +275,7 @@
             // netTrainButton
             // 
             this.netTrainButton.Location = new System.Drawing.Point(62, 502);
-            this.netTrainButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.netTrainButton.Margin = new System.Windows.Forms.Padding(6);
             this.netTrainButton.Name = "netTrainButton";
             this.netTrainButton.Size = new System.Drawing.Size(200, 58);
             this.netTrainButton.TabIndex = 11;
@@ -287,7 +287,7 @@
             // AccuracyCounter
             // 
             this.AccuracyCounter.Location = new System.Drawing.Point(50, 404);
-            this.AccuracyCounter.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.AccuracyCounter.Margin = new System.Windows.Forms.Padding(6);
             this.AccuracyCounter.Maximum = 100;
             this.AccuracyCounter.Name = "AccuracyCounter";
             this.AccuracyCounter.Size = new System.Drawing.Size(490, 90);
@@ -298,7 +298,7 @@
             // EpochesCounter
             // 
             this.EpochesCounter.Location = new System.Drawing.Point(334, 188);
-            this.EpochesCounter.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.EpochesCounter.Margin = new System.Windows.Forms.Padding(6);
             this.EpochesCounter.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -321,7 +321,7 @@
             // TrainingSizeCounter
             // 
             this.TrainingSizeCounter.Location = new System.Drawing.Point(334, 137);
-            this.TrainingSizeCounter.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.TrainingSizeCounter.Margin = new System.Windows.Forms.Padding(6);
             this.TrainingSizeCounter.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -363,7 +363,7 @@
             // trainOneButton
             // 
             this.trainOneButton.Location = new System.Drawing.Point(1028, 923);
-            this.trainOneButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.trainOneButton.Margin = new System.Windows.Forms.Padding(6);
             this.trainOneButton.Name = "trainOneButton";
             this.trainOneButton.Size = new System.Drawing.Size(252, 58);
             this.trainOneButton.TabIndex = 8;
@@ -374,7 +374,7 @@
             // progressBar1
             // 
             this.progressBar1.Location = new System.Drawing.Point(1034, 815);
-            this.progressBar1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(6);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(582, 42);
             this.progressBar1.Step = 1;
@@ -430,7 +430,7 @@
             // Save
             // 
             this.Save.Location = new System.Drawing.Point(24, 1052);
-            this.Save.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Save.Margin = new System.Windows.Forms.Padding(6);
             this.Save.Name = "Save";
             this.Save.Size = new System.Drawing.Size(252, 58);
             this.Save.TabIndex = 16;
@@ -441,7 +441,7 @@
             // Load
             // 
             this.Load.Location = new System.Drawing.Point(330, 1052);
-            this.Load.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Load.Margin = new System.Windows.Forms.Padding(6);
             this.Load.Name = "Load";
             this.Load.Size = new System.Drawing.Size(252, 58);
             this.Load.TabIndex = 17;
@@ -467,7 +467,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "NeuralNetworksStand";
             this.Text = "Банальный студенческий перспетрон";

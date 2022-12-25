@@ -9,43 +9,39 @@ namespace NeuralNetwork1
 {
     public static class ImageEncoder
     {
-        private const int TRESHOLD = 10;
-        private static float DifferenceLimit => TRESHOLD / 255.0f;
-
         public static double[] Flatten(Bitmap original)
         {
             var blob = ExtractBlob(original);
-            var vector = Vectorize(blob).ToArray();
+            var vector = Vectorize(blob);
             return vector;
         }
 
-        public static Bitmap ExtractBlob(Bitmap original)
+        private static Bitmap ExtractBlob(Bitmap original)
         {
             // Переводим в оттенки серого
             var grayFilter = new AForge.Imaging.Filters.Grayscale(0.2125, 0.7154, 0.0721);
             var unmanaged = grayFilter.Apply(AForge.Imaging.UnmanagedImage.FromManagedImage(original));
 
+            // Применяем пороговый фильтр
+            var thresholdFilter = new AForge.Imaging.Filters.OtsuThreshold();
+            thresholdFilter.ApplyInPlace(unmanaged);
+
             // Инвертируем
             var invertFilter = new AForge.Imaging.Filters.Invert();
             invertFilter.ApplyInPlace(unmanaged);
-
-            // Применяем пороговый фильтр
-            var threshldFilter = new AForge.Imaging.Filters.BradleyLocalThresholding();
-            threshldFilter.PixelBrightnessDifferenceLimit = DifferenceLimit;
-            threshldFilter.ApplyInPlace(unmanaged);
 
             // Создаём BlobCounter, вытаскиваем блобы
             var bc = new AForge.Imaging.BlobCounter();
 
             bc.FilterBlobs = true;
-            bc.MinWidth = 10;
-            bc.MinHeight = 10;
+            bc.MinWidth = 5;
+            bc.MinHeight = 5;
             // Упорядочиваем по размеру
             bc.ObjectsOrder = AForge.Imaging.ObjectsOrder.Size;
 
             bc.ProcessImage(unmanaged);
 
-            var rectangles = bc.GetObjectsRectangles().Skip(1).ToArray();
+            var rectangles = bc.GetObjectsRectangles().ToArray();
 
             int lx = unmanaged.Width;
             int ly = unmanaged.Height;
@@ -71,11 +67,12 @@ namespace NeuralNetwork1
                 }
             }
 
+            // Обрезаем края, оставляя только центральные блобчики
             var cropFilter = new AForge.Imaging.Filters.Crop(new Rectangle(lx, ly, rx - lx, ry - ly));
             unmanaged = cropFilter.Apply(unmanaged);
 
-            // Масштабируем до 20x20
-            var scaleFilter = new AForge.Imaging.Filters.ResizeBilinear(20, 20);
+            //  Масштабируем до 30x30
+            var scaleFilter = new AForge.Imaging.Filters.ResizeBilinear(30, 30);
             unmanaged = scaleFilter.Apply(unmanaged);
 
             return unmanaged.ToManagedImage();
@@ -86,21 +83,16 @@ namespace NeuralNetwork1
             var vector = Enumerable
                 .Repeat(0.0, blob.Width * blob.Height)
                 .ToArray();
+            int i = 0;
             for (int x = 0; x < blob.Width; x += 1)
             {
                 for (int y = 0; y < blob.Height; y += 1)
                 {
                     var color = blob.GetPixel(x, y);
-                    if (SatisfiesTreshold(color))
-                    {
-                        vector[x + y] = 1.0;
-                    }
+                    vector[i++] = color.R / 255.0;
                 }
             }
             return vector;
         }
-
-        private static bool SatisfiesTreshold(Color color)
-            => color.R <= TRESHOLD && color.G <= TRESHOLD && color.B <= TRESHOLD;
     }
 }

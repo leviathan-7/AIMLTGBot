@@ -157,11 +157,11 @@ namespace NeuralNetwork1
         {
             //  Проверяем корректность задания структуры сети
             int[] structure = CurrentNetworkStructure();
-            if (structure.Length < 2 || structure[0] != 400 ||
+            if (structure.Length < 2 || structure[0] != 900 ||
                 structure[structure.Length - 1] != generator.EmotionsCount)
             {
                 MessageBox.Show(
-                    $"В сети должно быть более двух слоёв, первый слой должен содержать 400 нейронов, последний - ${generator.EmotionsCount}",
+                    $"В сети должно быть более двух слоёв, первый слой должен содержать 900 нейронов, последний - ${generator.EmotionsCount}",
                     "Ошибка", MessageBoxButtons.OK);
                 return;
             }
