@@ -27,7 +27,7 @@ namespace AIMLTGBot
         {
             List<Layer> NewLayers = new List<Layer> { };
             string[] readText = File.ReadAllLines(path);
-            int N = int.Parse(readText[0]);
+            N = int.Parse(readText[0]);
             int j = 1;
             for (int i = 0; i < N; i++)
             {

@@ -20,6 +20,11 @@ namespace AIMLTGBot
         {
             double[] S = ImageEncoder.Flatten(img);
             double[] res = network.Compute(S);
+            for (int i = 0; i < res.Length; i++)
+            {
+                Console.Write($"{res[i]}, ");
+            }
+            Console.WriteLine();
             int j = 0;
             double max = 0;
             for (int i = 0; i < res.Length; i++)
