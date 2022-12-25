@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Threading.Tasks;
@@ -9,14 +9,15 @@ namespace NeuralNetwork1
     {
         private string path = @"student-network.txt";
         //скорость обучения
-        private double eta = 0.1;
+        private double eta = 0;
 
         // количество слоев
         private int N;
 
         private List<Layer> Layers;
-        public StudentNetwork(int[] structure)
+        public StudentNetwork(int[] structure,double speed)
         {
+            //MessageBox.Show(""+speed);
             Layers = new List<Layer> { };
             for (int i = 0; i < structure.Length - 1; i++)
             {
@@ -24,6 +25,7 @@ namespace NeuralNetwork1
                 Layers.Add(L);
             }
             N = Layers.Count;
+            eta = speed;
         }
 
         public override int Train(Sample sample, double acceptableError, bool parallel)
@@ -157,7 +159,7 @@ namespace NeuralNetwork1
         {
             List<Layer> NewLayers = new List<Layer> { };
             string[] readText = File.ReadAllLines(path);
-            int N = int.Parse(readText[0]);
+            N = int.Parse(readText[0]);
             int j = 1;
             for (int i = 0; i < N; i++)
             {
@@ -165,7 +167,6 @@ namespace NeuralNetwork1
                 NewLayers.Add(L);
             }
             Layers = NewLayers;
-            N = Layers.Count;
         }
     }
 }

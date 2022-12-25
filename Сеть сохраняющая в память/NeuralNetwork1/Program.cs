@@ -8,6 +8,7 @@ namespace NeuralNetwork1
 {
     static class Program
     {
+        public static double speed = 0;
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
@@ -20,7 +21,7 @@ namespace NeuralNetwork1
             {
                 // Тут можно добавить свои нейросети
                 {"Accord.Net Perseptron", structure => new AccordNet(structure)},
-                {"Студентческий персептрон", structure => new StudentNetwork(structure)},
+                {"Студентческий персептрон", structure => new StudentNetwork(structure,speed)},
             }));
         }
     }
