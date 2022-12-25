@@ -41,7 +41,7 @@ namespace NeuralNetwork1
 
             bc.ProcessImage(unmanaged);
 
-            var rectangles = bc.GetObjectsRectangles().ToArray();
+            var rectangles = bc.GetObjectsRectangles();
 
             int lx = unmanaged.Width;
             int ly = unmanaged.Height;
