@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace NeuralNetwork1
 {
@@ -43,7 +44,7 @@ namespace NeuralNetwork1
             this.networksFabric = networksFabric;
             netTypeBox.Items.AddRange(this.networksFabric.Keys.Select(s => (object) s).ToArray());
             netTypeBox.SelectedIndex = 0;
-            generator.FigureCount = (int) classCounter.Value;
+            generator.EmotionsCount = (int) classCounter.Value;
             button3_Click(this, null);
             pictureBox1.Image = Properties.Resources.Title;
         }
@@ -71,17 +72,17 @@ namespace NeuralNetwork1
             label1.Text = "Распознано : " + figure.recognizedClass;
 
             label8.Text = string.Join("\n", figure.Output.Select(d => d.ToString(CultureInfo.InvariantCulture)));
-            pictureBox1.Image = generator.GenBitmap();
+            //pictureBox1.Image = generator.GenBitmap();
             pictureBox1.Invalidate();
         }
 
         private void pictureBox1_MouseClick(object sender, MouseEventArgs e)
         {
-            Sample fig = generator.GenerateFigure();
+            //var fig = generator.GenerateFigure();
 
-            Net.Predict(fig);
+            //Net.Predict(fig);
 
-            set_result(fig);
+            //set_result(fig);
         }
 
         private async Task<double> train_networkAsync(int training_size, int epoches, double acceptable_error,
@@ -95,10 +96,12 @@ namespace NeuralNetwork1
             trainOneButton.Enabled = false;
 
             //  Создаём новую обучающую выборку
-            SamplesSet samples = new SamplesSet();
+            var samples = new SamplesSet();
 
-            for (int i = 0; i < training_size; i++)
-                samples.AddSample(generator.GenerateFigure());
+            foreach (var sample in generator.LoadTrainSamples())
+            {
+                samples.AddSample(sample);
+            }
             try
             {
                 //  Обучение запускаем асинхронно, чтобы не блокировать форму
@@ -135,10 +138,12 @@ namespace NeuralNetwork1
             Enabled = false;
             //  Тут просто тестирование новой выборки
             //  Создаём новую обучающую выборку
-            SamplesSet samples = new SamplesSet();
+            var samples = new SamplesSet();
 
-            for (int i = 0; i < (int) TrainingSizeCounter.Value; i++)
-                samples.AddSample(generator.GenerateFigure());
+            foreach (var sample in generator.LoadTestSamples())
+            {
+                samples.AddSample(sample);
+            }
 
             double accuracy = samples.TestNeuralNetwork(Net);
 
@@ -152,11 +157,11 @@ namespace NeuralNetwork1
         {
             //  Проверяем корректность задания структуры сети
             int[] structure = CurrentNetworkStructure();
-            if (structure.Length < 2 || structure[0] != 400 ||
-                structure[structure.Length - 1] != generator.FigureCount)
+            if (structure.Length < 2 || structure[0] != 900 ||
+                structure[structure.Length - 1] != generator.EmotionsCount)
             {
                 MessageBox.Show(
-                    $"В сети должно быть более двух слоёв, первый слой должен содержать 400 нейронов, последний - ${generator.FigureCount}",
+                    $"В сети должно быть более двух слоёв, первый слой должен содержать 900 нейронов, последний - ${generator.EmotionsCount}",
                     "Ошибка", MessageBoxButtons.OK);
                 return;
             }
@@ -175,7 +180,7 @@ namespace NeuralNetwork1
 
         private void classCounter_ValueChanged(object sender, EventArgs e)
         {
-            generator.FigureCount = (int) classCounter.Value;
+            generator.EmotionsCount = (int) classCounter.Value;
             var vals = netStructureBox.Text.Split(';');
             if (!int.TryParse(vals.Last(), out _)) return;
             vals[vals.Length - 1] = classCounter.Value.ToString();
@@ -184,12 +189,15 @@ namespace NeuralNetwork1
 
         private void btnTrainOne_Click(object sender, EventArgs e)
         {
-            if (Net == null) return;
-            Sample fig = generator.GenerateFigure();
-            pictureBox1.Image = generator.GenBitmap();
-            pictureBox1.Invalidate();
-            Net.Train(fig, 0.00005, parallelCheckBox.Checked);
-            set_result(fig);
+            if (Net == null)
+            {
+                return;
+            }
+            //var figure = generator.GenerateFigure();
+            //pictureBox1.Image = generator.GenBitmap();
+            //pictureBox1.Invalidate();
+            //Net.Train(figure, 0.00005, parallelCheckBox.Checked);
+            //set_result(figure);
         }
 
         private BaseNetwork CreateNetwork(string networkName)

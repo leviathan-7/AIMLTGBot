@@ -9,15 +9,22 @@ namespace AIMLTGBot
 {
     class ResultFromNeyronNetwork
     {
-        private StudentNetwork Network = null;
-        public ResultFromNeyronNetwork(StudentNetwork Network)
+        private StudentNetwork network;
+
+        public ResultFromNeyronNetwork(StudentNetwork network)
         {
-            this.Network = Network;
+            this.network = network;
         }
+
         public string Result(Bitmap img)
         {
-            double[] S = BitmapEncoder.Flatten(img);
-            double[]  res = Network.Compute(S);
+            double[] S = ImageEncoder.Flatten(img);
+            double[] res = network.Compute(S);
+            for (int i = 0; i < res.Length; i++)
+            {
+                Console.Write($"{res[i]}, ");
+            }
+            Console.WriteLine();
             int j = 0;
             double max = 0;
             for (int i = 0; i < res.Length; i++)
