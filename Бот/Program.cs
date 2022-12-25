@@ -6,9 +6,9 @@ namespace AIMLTGBot
     {
         static void Main(string[] args)
         {
-            StudentNetwork Network = new StudentNetwork(@"c:\NeyronNetwork.txt");
+            var studentNetwork = new StudentNetwork(@"student-network.txt");
             var token = System.IO.File.ReadAllText("TGToken.txt");
-            using (var tg = new TelegramService(token, new AIMLService(),Network))
+            using (var tg = new TelegramService(token, new AIMLService(), studentNetwork))
             {
                 Console.WriteLine($"Подключились к телеграмму как бот { tg.Username }. Ожидаем сообщений. Для завершения работы нажимте Enter");
                 Console.ReadLine();

@@ -94,7 +94,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AIMLService.cs" />
-    <Compile Include="Exceptions.cs" />
     <Compile Include="ImageEncoder.cs" />
     <Compile Include="Layer.cs" />
     <Compile Include="Matrix.cs" />

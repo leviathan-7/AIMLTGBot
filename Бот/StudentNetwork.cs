@@ -7,11 +7,11 @@ namespace AIMLTGBot
 {
     public class StudentNetwork
     {
-
         // количество слоев
         private int N;
 
         private List<Layer> Layers;
+
         public StudentNetwork(int[] structure)
         {
             Layers = new List<Layer> { };
@@ -22,6 +22,7 @@ namespace AIMLTGBot
             }
             N = Layers.Count;
         }
+
         public StudentNetwork(string path)
         {
             List<Layer> NewLayers = new List<Layer> { };
@@ -36,6 +37,7 @@ namespace AIMLTGBot
             Layers = NewLayers;
             N = Layers.Count;
         }
+
         public double[] Compute(double[] input)
         {
             for (int i = 0; i < N; i++)
@@ -43,6 +45,5 @@ namespace AIMLTGBot
 
             return input;
         }
-
     }
 }
