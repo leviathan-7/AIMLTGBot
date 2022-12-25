@@ -43,6 +43,7 @@ namespace NeuralNetwork1
 
             var rectangles = bc.GetObjectsRectangles();
 
+            // Находим выпуклую оболочку
             int lx = unmanaged.Width;
             int ly = unmanaged.Height;
             int rx = 0;
