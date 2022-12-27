@@ -73,11 +73,8 @@ namespace NeuralNetwork1
         private double TeacherEpoch(double[][] inputs, double[][] outputs, bool parallel)
         {
             double sum = 0;
-            if (parallel)
-                Parallel.For(0, inputs.Length, i =>{ sum += Teacher(inputs[i], outputs[i], parallel); });
-            else
-                for (int i = 0; i < inputs.Length; i++)
-                    sum += Teacher(inputs[i], outputs[i], parallel);
+            for (int i = 0; i < inputs.Length; i++)
+                sum += Teacher(inputs[i], outputs[i], parallel);
             return sum;
         }
         private double Teacher(double[] input, double[] output, bool parallel)
