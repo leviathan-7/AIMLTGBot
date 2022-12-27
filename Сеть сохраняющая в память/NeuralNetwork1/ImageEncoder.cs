@@ -9,6 +9,11 @@ namespace NeuralNetwork1
 {
     public static class ImageEncoder
     {
+        /// <summary>
+        /// Преобразует картинку в массив длиной 900
+        /// </summary>
+        /// <param name="original">Исходная картинка</param>
+        /// <returns>Массив интенсивностей</returns>
         public static double[] Flatten(Bitmap original)
         {
             var blob = ExtractBlob(original);
