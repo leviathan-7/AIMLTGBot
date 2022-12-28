@@ -9,7 +9,7 @@ namespace AIMLTGBot
 {
     public static class ImageEncoder
     {
-        public static double[] Flatten(Bitmap original)
+        public static double[] Encode(Bitmap original)
         {
             var blob = ExtractBlob(original);
             var vector = Vectorize(blob);
@@ -68,11 +68,11 @@ namespace AIMLTGBot
                 }
             }
 
-            // Обрезаем края, оставляя только центральные блобчики
+            // Обрезаем края, оставляя только центральные блобы
             var cropFilter = new AForge.Imaging.Filters.Crop(new Rectangle(lx, ly, rx - lx, ry - ly));
             unmanaged = cropFilter.Apply(unmanaged);
 
-            //  Масштабируем до 30x30
+            // Масштабируем до 30x30
             var scaleFilter = new AForge.Imaging.Filters.ResizeBilinear(30, 30);
             unmanaged = scaleFilter.Apply(unmanaged);
 

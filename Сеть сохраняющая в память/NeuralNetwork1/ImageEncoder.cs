@@ -14,7 +14,7 @@ namespace NeuralNetwork1
         /// </summary>
         /// <param name="original">Исходная картинка</param>
         /// <returns>Массив интенсивностей</returns>
-        public static double[] Flatten(Bitmap original)
+        public static double[] Encode(Bitmap original)
         {
             var blob = ExtractBlob(original);
             var vector = Vectorize(blob);

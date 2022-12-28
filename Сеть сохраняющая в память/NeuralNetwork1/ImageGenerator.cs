@@ -34,11 +34,11 @@ namespace NeuralNetwork1
             string neutralPath = @"C:\Users\Mike\Desktop\IS\AIMLTGBot\Сеть сохраняющая в память\NeuralNetwork1\эмоции\тест\нейтральный";
             string surprisedPath = @"C:\Users\Mike\Desktop\IS\AIMLTGBot\Сеть сохраняющая в память\NeuralNetwork1\эмоции\тест\удивление";
 
-            var smiles = Directory.GetFiles(smilePath).Select(filename => new Sample(ImageEncoder.Flatten(new Bitmap(filename)), EmotionsCount, FigureType.Smile));
-            var sads = Directory.GetFiles(sadPath).Select(filename => new Sample(ImageEncoder.Flatten(new Bitmap(filename)), EmotionsCount, FigureType.Sad));
-            var angries = Directory.GetFiles(angryPath).Select(filename => new Sample(ImageEncoder.Flatten(new Bitmap(filename)), EmotionsCount, FigureType.Angry));
-            var neutrals = Directory.GetFiles(neutralPath).Select(filename => new Sample(ImageEncoder.Flatten(new Bitmap(filename)), EmotionsCount, FigureType.Neutral));
-            var surpriseds = Directory.GetFiles(surprisedPath).Select(filename => new Sample(ImageEncoder.Flatten(new Bitmap(filename)), EmotionsCount, FigureType.Surprised));
+            var smiles = Directory.GetFiles(smilePath).Select(filename => new Sample(ImageEncoder.Encode(new Bitmap(filename)), EmotionsCount, FigureType.Smile));
+            var sads = Directory.GetFiles(sadPath).Select(filename => new Sample(ImageEncoder.Encode(new Bitmap(filename)), EmotionsCount, FigureType.Sad));
+            var angries = Directory.GetFiles(angryPath).Select(filename => new Sample(ImageEncoder.Encode(new Bitmap(filename)), EmotionsCount, FigureType.Angry));
+            var neutrals = Directory.GetFiles(neutralPath).Select(filename => new Sample(ImageEncoder.Encode(new Bitmap(filename)), EmotionsCount, FigureType.Neutral));
+            var surpriseds = Directory.GetFiles(surprisedPath).Select(filename => new Sample(ImageEncoder.Encode(new Bitmap(filename)), EmotionsCount, FigureType.Surprised));
 
             return smiles
                 .Concat(sads)
@@ -56,11 +56,11 @@ namespace NeuralNetwork1
             string neutralPath = @"C:\Users\Mike\Desktop\IS\AIMLTGBot\Сеть сохраняющая в память\NeuralNetwork1\эмоции\обучение\нейтральный";
             string surprisedPath = @"C:\Users\Mike\Desktop\IS\AIMLTGBot\Сеть сохраняющая в память\NeuralNetwork1\эмоции\обучение\удивление";
 
-            var smiles = Directory.GetFiles(smilePath).Select(filename => new Sample(ImageEncoder.Flatten(new Bitmap(filename)), EmotionsCount, FigureType.Smile));
-            var sads = Directory.GetFiles(sadPath).Select(filename => new Sample(ImageEncoder.Flatten(new Bitmap(filename)), EmotionsCount, FigureType.Sad));
-            var angries = Directory.GetFiles(angryPath).Select(filename => new Sample(ImageEncoder.Flatten(new Bitmap(filename)), EmotionsCount, FigureType.Angry));
-            var neutrals = Directory.GetFiles(neutralPath).Select(filename => new Sample(ImageEncoder.Flatten(new Bitmap(filename)), EmotionsCount, FigureType.Neutral));
-            var surpriseds = Directory.GetFiles(surprisedPath).Select(filename => new Sample(ImageEncoder.Flatten(new Bitmap(filename)), EmotionsCount, FigureType.Surprised));
+            var smiles = Directory.GetFiles(smilePath).Select(filename => new Sample(ImageEncoder.Encode(new Bitmap(filename)), EmotionsCount, FigureType.Smile));
+            var sads = Directory.GetFiles(sadPath).Select(filename => new Sample(ImageEncoder.Encode(new Bitmap(filename)), EmotionsCount, FigureType.Sad));
+            var angries = Directory.GetFiles(angryPath).Select(filename => new Sample(ImageEncoder.Encode(new Bitmap(filename)), EmotionsCount, FigureType.Angry));
+            var neutrals = Directory.GetFiles(neutralPath).Select(filename => new Sample(ImageEncoder.Encode(new Bitmap(filename)), EmotionsCount, FigureType.Neutral));
+            var surpriseds = Directory.GetFiles(surprisedPath).Select(filename => new Sample(ImageEncoder.Encode(new Bitmap(filename)), EmotionsCount, FigureType.Surprised));
 
             return smiles
                 .Concat(sads)

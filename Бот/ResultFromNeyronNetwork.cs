@@ -18,7 +18,7 @@ namespace AIMLTGBot
 
         public string Result(Bitmap img)
         {
-            double[] S = ImageEncoder.Flatten(img);
+            double[] S = ImageEncoder.Encode(img);
             double[] res = network.Compute(S);
             for (int i = 0; i < res.Length; i++)
             {
