@@ -77,7 +77,7 @@ namespace NeuralNetwork1
             var cropFilter = new AForge.Imaging.Filters.Crop(new Rectangle(lx, ly, rx - lx, ry - ly));
             unmanaged = cropFilter.Apply(unmanaged);
 
-            //  Масштабируем до 30x30
+            // Масштабируем до 30x30
             var scaleFilter = new AForge.Imaging.Filters.ResizeBilinear(30, 30);
             unmanaged = scaleFilter.Apply(unmanaged);
 
